@@ -6,39 +6,41 @@
     <script src="vue.js"></script>
 </head>
 <body>
-    <div id="app1">
-        <input type="button" value="切换到第1个组件" @click="changeTabComponent(1)">
-        <input type="button" value="切换到第2个组件" @click="changeTabComponent(2)">
-        <input type="button" value="切换到第3个组件" @click="changeTabComponent(3)">
+<div id="app1">
+    <input type="button" value="切换到第1个组件" @click="changeTabComponent(1)">
+    <input type="button" value="切换到第2个组件" @click="changeTabComponent(2)">
+    <input type="button" value="切换到第3个组件" @click="changeTabComponent(3)">
+    <keep-alive>
         <component :is="currentCp"></component>
-    </div>
+    </keep-alive>
+
+</div>
 </body>
 <script>
-    let c1 = Vue.component('c1',{
-        template:`<div @click="changeBg">我是第1个组件哦！</div>`,
-        methods:{
+    let c1 = Vue.component('c1', {
+        template: `<div @click="changeBg">我是第1个组件哦！</div>`,
+        methods: {
             changeBg(ev){
                 ev.target.style.backgroundColor = 'red';
             }
         }
     });
-    let c2 = Vue.component('c2',{
-        template:`<div>我是第2个组件哦！</div>`
+    let c2 = Vue.component('c2', {
+        template: `<div>我是第2个组件哦！</div>`
     });
-    let c3 = Vue.component('c3',{
-        template:`<div>我是第3个组件哦！</div>`
+    let c3 = Vue.component('c3', {
+        template: `<div>我是第3个组件哦！</div>`
     });
 </script>
 <script>
     let vm = new Vue({
-        el:'#app1',
-        data:{
-            currentCp:c1
+        el: '#app1',
+        data: {
+            currentCp: c1
         },
-        methods:{
+        methods: {
             changeTabComponent(index){
-                switch(index)
-                {
+                switch (index) {
                     case 1:
                         this.currentCp = c1;
                         break;
